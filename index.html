@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papier Kamień Nożyce</title>
+    <style>
+        body{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #3b2b53;
+            overflow: hidden;
+        }
+        /*bg*/
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(2rem);
+            z-index: -2;
+        }
+        path {
+            transition: d 2s ;
+        }
+        .blobSvg{
+            width:700px;
+            opacity: 0.5;
+            position: absolute;
+        }
+        #background .blobSvg:nth-child(1){
+            top:0px;
+            left:0px;
+        }
+        #background .blobSvg:nth-child(2){
+            bottom:0px;
+            left:500px;
+        }
+        #background .blobSvg:nth-child(3){
+            top:100px;
+            right:100px;
+        }
+        .blobIcon{
+            position:absolute;
+            width: 300px;
+            transform: translate(75%,100%);
+        }
+
+
+ /*END bg*/
+        h1{
+            text-align:center;
+            font-size: 80px;
+
+        }
+        h3{
+            text-align:center;
+            font-size: 100px;
+            margin-bottom:40px;
+            animation: countdown 0.4s;
+        }
+        @keyframes countdown {
+            0%   {transform:scale(2.2)}
+            100% {transform:scale(1.0)}
+        }
+
+        .hidden{
+            visibility: hidden;
+        }
+
+
+        #selection{
+            display:flex;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .selectbutton{
+            background: #dfe3eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-right:10px;
+            border: 4px solid #3b2b53; 
+            transition: all 0.2s;
+        }
+        .selected{
+            background: #bbc4db;
+        }
+        .selectbutton:hover{
+            transform:scale(1.1);
+        }
+
+        #actioncontainer{
+           display:flex;
+           justify-content: space-between;
+           height:400px;
+        }
+        .action-img{
+            width: 400px;
+        }
+        .action-object{
+            padding:10px;
+        }
+        #pc-choice-img{
+            transform: scaleX(-1);
+        }
+        .action-animation-pc{
+            animation: action-pc 1s;
+            animation-fill-mode: forwards
+        }
+        @keyframes action-pc {
+            0% {transform:translateX(0)}
+            100% {transform: translateX(calc(50vw - 200px))}
+        }
+        .action-animation-player{
+            animation: action-player 1s;
+            animation-fill-mode: forwards
+        }
+        @keyframes action-player {
+            0% {transform:translateX(0)}
+            100% {transform: translateX(calc(-50vw + 200px))}
+        }
+        #explosionImg{
+            width:600px;
+            position:absolute;
+            top:300px;
+            left:calc(50vw - 300px);
+        }
+
+        #startbutton{
+            font-family: inherit;
+            font-size: 100px;
+            color: #fffeff;
+            animation:infinite buttonfloat 5s;
+
+            padding:20px;
+            background-color: #7249af; 
+            border-radius: 20px;
+            border:0;
+
+            position:absolute;
+            top:40%;
+
+            filter: drop-shadow(0px 0px 70px #7249af);
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        @keyframes buttonfloat {
+            0%   {transform:scale(1.0)}
+            50%   {transform:scale(1.5)}
+            90% {transform:scale(1.0)}
+        }
+        @keyframes shine {
+            0% {left: -100px}
+            20% {left: 100%}
+            100% {left: 100%}
+        }
+        #startbutton:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            background-image: linear-gradient(
+            120deg,
+            rgba(255,255,255, 0) 30%,
+            rgba(255,255,255, .8),
+            rgba(255,255,255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        animation: shine 3s infinite linear;
+        }
+        #startbutton:hover{
+            background-color: #b27eff;
+            animation:none;
+            transform: scale(1.5);
+        }
+        #startbtn-div{
+            margin-left: auto;
+            margin-right: auto;
+            width:400px;
+            display: flex;
+            justify-content: center;
+
+            
+        }
+
+        #endDiv{
+            width:500px;
+            background-color: #dfe3eb;
+            border-radius: 30px;
+            padding:20px;
+            font-size: 40px;
+
+            position:absolute;
+            top:40vh;
+            left:calc(50vw - 250px);
+        }
+    </style>
+</head>
+<body>
+    <div id="background">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" class="blobSvg">
+            <path class="blob" d="M462.5,302Q430,354,388.5,386Q347,418,298.5,432Q250,446,213.5,411Q177,376,114.5,370Q52,364,76,307Q100,250,111,213Q122,176,152,154.5Q182,133,216,81Q250,29,310,35.5Q370,42,411,87.5Q452,133,473.5,191.5Q495,250,462.5,302Z" fill="#a29bfe"></path>
+          </svg>
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" class="blobSvg">
+            <path class="blob" d="M462.5,302Q430,354,388.5,386Q347,418,298.5,432Q250,446,213.5,411Q177,376,114.5,370Q52,364,76,307Q100,250,111,213Q122,176,152,154.5Q182,133,216,81Q250,29,310,35.5Q370,42,411,87.5Q452,133,473.5,191.5Q495,250,462.5,302Z" fill="#a29bfe"></path>
+          </svg>
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" class="blobSvg">
+            <path class="blob" d="M462.5,302Q430,354,388.5,386Q347,418,298.5,432Q250,446,213.5,411Q177,376,114.5,370Q52,364,76,307Q100,250,111,213Q122,176,152,154.5Q182,133,216,81Q250,29,310,35.5Q370,42,411,87.5Q452,133,473.5,191.5Q495,250,462.5,302Z" fill="#a29bfe"></path>
+          </svg>
+    </div>
+    <div id="background2">
+        <img src="img/emoji/paper.png" class="blobIcon">
+        <img src="img/emoji/rock.png" class="blobIcon">
+        <img src="img/emoji/scissors.png" class="blobIcon">
+    </div>
+
+
+    <h1>Papier kamień nożyce</h1>
+    <h3 id="cntdwn" class="hidden"></h3>
+
+<div id="actioncontainer">
+    <div class="action-object" id="action-pc"><img id="pc-choice-img" class="action-img" src=""></div>
+    <div class="action-object" id="action-player"><img id="player-choice-img" class="action-img" src=""></div>
+</div>
+<img id="explosionImg" class="hidden" src="img/explosion.gif">
+
+    <div id="selection" class="hidden">
+        <button class="selectbutton" id="paper" onclick="setPlayerChoice('paper')"><img src="img/emoji/paper.png" width="100"></button>
+        <button class="selectbutton" id="rock" onclick="setPlayerChoice('rock')"><img src="img/emoji/rock.png" width="100"></button>
+        <button class="selectbutton" id="scissors" onclick="setPlayerChoice('scissors')"><img src="img/emoji/scissors.png" width="100"></button>
+    </div>
+    <div id="startbtn-div"><button id="startbutton" onclick="startGame()">Zagraj</button></div>
+    <div id="endDiv" class="hidden">
+        <p id="endInfo">info</p>
+        <button onclick="location.reload()">Zagraj Ponownie</button>
+    </div>
+
+    <script>
+        const selectbuttons = document.getElementsByClassName('selectbutton');
+
+        const choices =[
+            {name:'paper', beats:'rock'}, //, img:'img/paper.png', emoji:'img/emoji/paper.png'
+            {name:'rock', beats:'scissors'},
+            {name:'scissors', beats:'paper'},
+            ];
+        
+        let playerChoice;
+        function setPlayerChoice(choice){
+            playerChoice = choice;
+            for(let i=0; i<selectbuttons.length;i++){
+                selectbuttons[i].classList.remove('selected');
+            }
+            document.getElementById(choice).classList.add('selected');
+        }
+        let computerChoice;
+        function setComputerChoice(){
+            computerChoice = choices[Math.floor(Math.random() * 3)].name;
+            console.log('computerChoice', computerChoice);
+        }
+
+        const cntdwn = document.getElementById('cntdwn');   
+        const time = 5;
+        async function startcntdwn(){
+            for(let i=time;i>0;i--){
+                cntdwn.innerHTML = i;
+                cntdwn.style.animation = "none";
+                void cntdwn.offsetWidth;
+                cntdwn.style.animation = "";
+                await delay(1000);
+            }
+            cntdwn.innerHTML = 'START';
+            playAction();
+        }
+        function delay(time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+        }
+
+        function path(type, choice){
+            if(type==='img') return `img/${choice}.png`; //IMAGES ARE CURRENTLY .jpg BUT THEY NEED TO BE CHANGED TO .png IN CASE FOR TRANSPARENCY
+            if(type==='emoji') return `img/emoji/${choice}.png`;
+        }
+
+        const pcChoiceImg = document.getElementById('pc-choice-img');
+        const playerChoiceImg = document.getElementById('player-choice-img');
+
+        function setImages(){
+            pcChoiceImg.src = path('img', computerChoice);
+            playerChoiceImg.src = path('img', playerChoice);
+            console.log(pcChoiceImg, playerChoiceImg);
+        }
+
+        const selectionDiv = document.getElementById('selection');
+        const actioncontainerDiv = document.getElementById('actioncontainer');
+
+        const bg = document.getElementById('background');
+        const bg2 = document.getElementById('background2');
+        const startbtndiv = document.getElementById('startbtn-div');
+        function startGame(){
+            startbtndiv.classList.add('hidden');
+            bg.classList.add('hidden');
+            bg2.classList.add('hidden');
+            selectionDiv.classList.remove('hidden');
+            cntdwn.classList.remove('hidden');
+            actioncontainerDiv.classList.remove('hidden');
+            setPlayerChoice('rock'); //default
+            startcntdwn()
+        }
+
+        const actionpc = document.getElementById('action-pc');
+        const actionplayer = document.getElementById('action-player');
+        const explosionImg = document.getElementById('explosionImg');
+        const endDiv = document.getElementById('endDiv');
+        const endInfo = document.getElementById('endInfo');
+        async function playAction(){
+            setComputerChoice();
+            setImages();
+
+            actionpc.classList.add('action-animation-pc');
+            actionplayer.classList.add('action-animation-player');
+            await delay(300);
+            explosionImg.classList.remove('hidden');
+            await delay(500);
+            if(computerChoice === playerChoice){
+                endInfo.innerHTML = "Remis";     
+            }else if(choices.find(choice => choice.name === computerChoice).beats === playerChoice){
+                endInfo.innerHTML = "Przegrałeś. Wygrywa js.";     
+                actionplayer.classList.add('hidden');
+            }else{
+                endInfo.innerHTML = "Gratulacje użytkowniku! Wygrałeś!";    
+                actionpc.classList.add('hidden');
+            }
+            await delay(1000);
+            explosionImg.classList.add('hidden');
+
+            endDiv.classList.remove('hidden');
+        }
+
+    </script>
+
+<script>
+    // BACKGROUND
+    const blobShapes = [
+        "M462.5,302Q430,354,388.5,386Q347,418,298.5,432Q250,446,213.5,411Q177,376,114.5,370Q52,364,76,307Q100,250,111,213Q122,176,152,154.5Q182,133,216,81Q250,29,310,35.5Q370,42,411,87.5Q452,133,473.5,191.5Q495,250,462.5,302Z",
+"M450.99446,295.86371Q409.29003,341.72743,387.73296,396.7385Q366.17589,451.74957,308.08795,453.86052Q250,455.97147,203.14502,434.01107Q156.29003,412.05068,134.05941,370.76704Q111.82879,329.48339,106.68143,289.74169Q101.53407,250,96.80984,204.56261Q92.0856,159.12521,123.61968,122.2845Q155.15375,85.44378,202.57687,65.27577Q250,45.10775,311.15055,41.63629Q372.30111,38.16482,387.98893,99.77257Q403.67675,161.38032,448.18782,205.69016Q492.69889,250,450.99446,295.86371Z",
+"M458,300Q424,350,389,390.5Q354,431,302,441Q250,451,218.5,405Q187,359,143,348Q99,337,79,293.5Q59,250,58.5,194.5Q58,139,121,138Q184,137,217,76.5Q250,16,296.5,52Q343,88,379.5,121Q416,154,454,202Q492,250,458,300Z",
+"M439.08164,305.4653Q442.49795,360.93061,407.07755,410.67959Q371.65714,460.42856,310.82857,446.4653Q250,432.50205,196.63878,433.58775Q143.27756,434.67345,116.09389,388.77958Q88.91021,342.88571,65.54694,296.44286Q42.18368,250,69.85102,205.85102Q97.51836,161.70203,118.89796,110.67348Q140.27756,59.64492,195.13878,55.90001Q250,52.15509,293.97755,75.12244Q337.9551,98.08979,368.14898,131.08979Q398.34286,164.08979,417.00409,207.0449Q435.66532,250,439.08164,305.4653Z",
+"M444.0854,298.28787Q417.63084,346.57575,388.10329,392.10329Q358.57575,437.63084,304.28787,417.26445Q250,396.89806,196.97934,415.11018Q143.95868,433.32231,110.62672,391.64738Q77.29476,349.97245,80.17081,299.98623Q83.04685,250,76.10606,197.92148Q69.16527,145.84296,108.0482,108.85951Q146.93114,71.87605,198.46557,60.5854Q250,49.29476,302.0854,59.34296Q354.17081,69.39117,400.34162,102.76445Q446.51242,136.13773,458.5262,193.06886Q470.53997,250,444.0854,298.28787Z",
+"M412.62959,286.9074Q376.49379,323.81479,354.00614,357.29009Q331.51849,390.76538,290.75925,424.90126Q250,459.03713,184.89504,467.86428Q119.79009,476.69142,137.70991,390.71605Q155.62973,304.74068,81.7037,277.37034Q7.77766,250,52.43824,205.9568Q97.09882,161.91361,132.42596,134.34571Q167.75311,106.77781,208.87655,120.78402Q250,134.79024,271.34564,154.89519Q292.69127,175.00015,330.37027,178.42604Q368.04926,181.85192,408.40732,215.92596Q448.76538,250,412.62959,286.9074Z",
+"M424.81413,306.28073Q444.95932,362.56146,388.30493,376.83833Q331.65054,391.1152,290.82527,426.303Q250,461.49079,190.81413,458.57066Q131.62827,455.65054,95.03148,408.1878Q58.43469,360.72506,58.96274,305.36253Q59.49079,250,90.38672,212.93126Q121.28266,175.86253,129.89593,116.56874Q138.50921,57.27494,194.2546,60.41435Q250,63.55375,294.65246,79.10021Q339.30493,94.64668,358.17473,135.71927Q377.04454,176.79186,390.85674,213.39593Q404.66895,250,424.81413,306.28073Z",
+"M428.80442,298.86938Q419.04283,347.73876,379.58673,376.47823Q340.13062,405.2177,295.06531,415.20628Q250,425.19487,205.07637,415.36867Q160.15274,405.54248,119.65274,377.28195Q79.15274,349.02142,76.28301,299.51071Q73.41327,250,91.21735,209.43469Q109.02142,168.86938,125.55425,116.26088Q142.08708,63.65239,196.04354,56Q250,48.34761,303.60885,56.6192Q357.2177,64.8908,395.02248,104.70593Q432.82726,144.52106,435.69664,197.26053Q438.56602,250,428.80442,298.86938Z",
+"M426.63485,294.73807Q404.79357,339.47614,380.20643,386.09544Q355.6193,432.71475,302.80965,426.64317Q250,420.57158,205.29357,412.43673Q160.58713,404.30188,139.01609,365.31743Q117.44504,326.33297,93.43673,288.16649Q69.42842,250,68.2059,197.06327Q66.98337,144.12654,99.18203,94.62654Q131.3807,45.12654,190.69035,32.02332Q250,18.9201,296.3252,54.36515Q342.6504,89.81019,360.22922,132.93727Q377.80803,176.06435,413.14209,213.03217Q448.47614,250,426.63485,294.73807Z"
+];
+
+    const blobPaths = document.getElementsByClassName('blob');
+    setInterval(() => {
+        Array.from(blobPaths).forEach(el => {el.setAttribute('d', blobShapes[Math.floor(Math.random() * blobShapes.length)])})
+    }, 500);
+
+    const blobSvgs = document.getElementsByClassName('blobSvg');
+    const iconsOnBlobs = document.getElementsByClassName('blobIcon');
+    function setIconsPos(){
+        for(let i=0; i<iconsOnBlobs.length; i++){
+            iconsOnBlobs[i].style.top = window.getComputedStyle(blobSvgs[i]).top;
+            iconsOnBlobs[i].style.left = window.getComputedStyle(blobSvgs[i]).left;
+        }
+    }setIconsPos();
+    /*function changeIcons() { //randomly swap the positions of icons
+        Array.from(iconsOnBlobs).forEach( el => {
+            console.log(el);
+            let rand = Math.floor(Math.random() * blobSvgs.length)
+            const randomSource = blobSvgs[rand]; //ERROR: can get the same value for a few elements !!!!!!!!!!!
+            console.log(randomSource, randomSource.getBoundingClientRect().top + 'px', randomSource.getBoundingClientRect().left + 'px')
+            el.style.top = randomSource.getBoundingClientRect().top + 'px';
+            el.style.left = randomSource.getBoundingClientRect().left + 'px';
+        });
+    }
+    setInterval(changeIcons, 3000);*/
+
+</script>
+</body>
+</html>
