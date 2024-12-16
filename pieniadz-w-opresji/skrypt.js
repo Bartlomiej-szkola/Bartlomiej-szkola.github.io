@@ -150,7 +150,7 @@ function uruchomGre(){
   // RUCH GRACZA
   let kierunki = { left: false, right: false };
   function ruchGracza() {
-    const distance = 5; // Dystans przesuwania
+    const distance = 10; // Dystans przesuwania
   
     if (kierunki.left && !(gracz.x - distance < 0)) {
       gracz.wLewo(distance);
